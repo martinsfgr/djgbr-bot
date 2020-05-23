@@ -57,7 +57,7 @@ function retweetGbr() {
 
   Bot.get('search/tweets', query, function (err, data, response) {
     if (err) {
-      console.log(`O bot não conseguiu achar o último tweet. ERRO: ${err}`);
+      console.log(`O bot não conseguiu achar o último tweet. ${err}`);
     } else {
       let id = {
         id: data.statuses[0].id_str
@@ -65,7 +65,7 @@ function retweetGbr() {
 
       Bot.post('statuses/retweet/:id', id, function (err, data, response) {
         if (err) {
-          console.log(`O bot não conseguiu retweetar. ERRO: ${err}`);
+          console.log(`O bot não conseguiu retweetar. ${err}`);
         } else {
           console.log(`O bot retweetou: ${data.text}`);
         }
@@ -78,13 +78,17 @@ function retweetGbr() {
         in_reply_to_status_id: data.statuses[0].id_str
       }
 
-      Bot.post('statuses/update', res, function (err, data, response) {
-        if (err) {
-          console.log(`O bot não conseguiu dar reply. ERRO: ${err}`);
-        } else {
-          console.log(`O bot deu reply: ${data.text}`);
-        }
-      });
+      if (data.statuses[0].user.screen_name != 'djgbr_bot') {
+        Bot.post('statuses/update', res, function (err, data, response) {
+          if (err) {
+            console.log(`O bot não conseguiu dar reply. ${err}`);
+          } else {
+            console.log(`O bot deu reply: ${data.text}`);
+          }
+        });
+      } else {
+        console.log('O bot tá tentando dar reply nele mesmo');
+      }
     }
   });
 }

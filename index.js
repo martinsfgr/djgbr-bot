@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const randomItem = require('random-item');
 
-
 const Bot = new Twit({
   consumer_key: process.env.CONSUMER_KEY,
   consumer_secret: process.env.CONSUMER_SECRET,
@@ -26,12 +25,6 @@ let phrases = [
   '𝘾𝙊𝙈 𝘿𝙀𝙐𝙎 𝙀𝙐 𝙈𝙀 𝘿𝙀𝙄𝙏𝙊 𝘾𝙊𝙈 𝘿𝙀𝙐𝙎 𝙀𝙐 𝙈𝙀 𝙇𝙀𝙑𝘼𝙉𝙏𝙊 𝘾𝙊𝙈𝙄𝙂𝙊 𝙀𝙐 𝘾𝘼𝙇𝙊 𝘾𝙊𝙈𝙄𝙂𝙊 𝙀𝙐 𝘾𝘼𝙉𝙏𝙊 𝙀𝙐 𝘽𝘼𝙏𝙊 𝙐𝙈 𝙋𝘼𝙋𝙊 𝙀𝙐 𝙏𝙊𝙈𝙊 𝙐𝙈 𝘿𝙍𝙄𝙉𝙌𝙐𝙀 𝙀𝙐 𝙁𝙄𝘾𝙊 𝙏𝙊𝙉𝙏𝙊 ',
   'S̶E̶ ̶T̶E̶M̶ ̶R̶A̶V̶E̶ ̶N̶A̶ ̶F̶A̶V̶E̶L̶A̶ ̶G̶B̶R̶ ̶T̶Á̶ ̶N̶O̶ ̶S̶O̶M̶ ',
   '🅽🅾 🅱🅰🅸🅻🅴 🅳🅾 🅼🅴🅶🅰🆃🆁🅾🅽, 🆃🅰🅲🅰 🅰 🆃🅲🅷🅴🅲🅰, 🆃🅰🅲🅰 🅰 🅱🆄🅽🅳🅰 ',
-
-]
-
-let phrasesReply = [
-  'ᴇɪᴛᴀ, ᴇʜ ᴏ ᴅʀ ɢʙʀ ',
-  'Ðᒎ Ǥᙖᖇ ᑭ〇ᖇᖇᗩ ',
 ]
 
 function postPhrase() {
@@ -71,14 +64,27 @@ function retweetGbr() {
         }
       });
 
-      let phrase = randomItem(phrasesReply);
-
       let res = {
-        status: phrase + '@' + data.statuses[0].user.screen_name,
+        status: 'ᕮƗƬᗩ, ᕮᕼ 〇 Ðᒎ Ǥᙖᖇ @' + data.statuses[0].user.screen_name,
         in_reply_to_status_id: data.statuses[0].id_str
       }
 
-      if (data.statuses[0].user.screen_name != 'djgbr_bot') {
+      let ive = {
+        status: 'Δ ΜΔƗŞ βŘΔβΔ Đ€ VØŁŦΔ Ř€ĐØŇĐΔ @' + data.statuses[0].user.screen_name,
+        in_reply_to_status_id: data.statuses[0].id_str
+      }
+
+      if (data.statuses[0].user.screen_name === 'ivegetal') {
+        Bot.post('statuses/update', ive, function (err, data, response) {
+          if (err) {
+            console.log(`O bot não conseguiu dar reply na Ive. ${err}`);
+          } else {
+            console.log(`O bot deu reply na Ive: ${data.text}`);
+          }
+        });
+      }
+      
+      else if (data.statuses[0].user.screen_name != 'djgbr_bot') {
         Bot.post('statuses/update', res, function (err, data, response) {
           if (err) {
             console.log(`O bot não conseguiu dar reply. ${err}`);
@@ -94,4 +100,4 @@ function retweetGbr() {
 }
 
 setInterval(postPhrase, 45*60*1000);
-setInterval(retweetGbr, 3*60*1000);
+setInterval(retweetGbr, 1*60*1000);

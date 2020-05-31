@@ -14,20 +14,44 @@ const Bot = new Twit({
 console.log('Bot tá rodando!');
 
 let phrases = [
-  '🇪 🇮 🇹 🇦 , 🇪  🇴  🇩 🇯  🇬 🇧 🇷 ',
-  '𝙴𝚂𝚂𝙴 𝙴𝙷 𝙾 𝙶𝙱𝚁, 𝙴𝙻𝙴 𝙼𝙴𝚁𝙼𝙾, 𝙾 𝙲𝙰𝚁𝙰 𝙳𝙰𝚂 𝚁𝙰𝚅𝙴. 𝙿𝙴𝙶𝙰 𝙴𝚂𝚂𝙰, 𝚃𝙰? ',
-  '777 𝑁𝐴 𝐹𝑅𝐸𝑁𝑇𝐸 𝐷𝑂 𝑀𝐸𝐺𝐴𝑇𝑅𝑂𝑁 ',
-  '𝓔𝓗 𝓞 𝓓𝓙 𝓖𝓑𝓡 ',
-  'ⅤᗩƗ ᑕ〇ᗰᕮᑕᗩᖇ 〇 Ⅴᖇᗩᑌ ',
-  'ђj є Sєxø ∩A яA√є ',
-  'ø þяAþø Tєм ∩øмє: D̶J̶ ̶G̶B̶R̶  ',
-  'Ðᒎ Ǥᙖᖇ ᑭ〇ᖇᖇᗩ ḰƗḰᗩ ᒪ〇ᑕᗩ ',
-  '𝘾𝙊𝙈 𝘿𝙀𝙐𝙎 𝙀𝙐 𝙈𝙀 𝘿𝙀𝙄𝙏𝙊 𝘾𝙊𝙈 𝘿𝙀𝙐𝙎 𝙀𝙐 𝙈𝙀 𝙇𝙀𝙑𝘼𝙉𝙏𝙊 𝘾𝙊𝙈𝙄𝙂𝙊 𝙀𝙐 𝘾𝘼𝙇𝙊 𝘾𝙊𝙈𝙄𝙂𝙊 𝙀𝙐 𝘾𝘼𝙉𝙏𝙊 𝙀𝙐 𝘽𝘼𝙏𝙊 𝙐𝙈 𝙋𝘼𝙋𝙊 𝙀𝙐 𝙏𝙊𝙈𝙊 𝙐𝙈 𝘿𝙍𝙄𝙉𝙌𝙐𝙀 𝙀𝙐 𝙁𝙄𝘾𝙊 𝙏𝙊𝙉𝙏𝙊 ',
-  'S̶E̶ ̶T̶E̶M̶ ̶R̶A̶V̶E̶ ̶N̶A̶ ̶F̶A̶V̶E̶L̶A̶ ̶G̶B̶R̶ ̶T̶Á̶ ̶N̶O̶ ̶S̶O̶M̶ ',
-  '🅽🅾 🅱🅰🅸🅻🅴 🅳🅾 🅼🅴🅶🅰🆃🆁🅾🅽, 🆃🅰🅲🅰 🅰 🆃🅲🅷🅴🅲🅰, 🆃🅰🅲🅰 🅰 🅱🆄🅽🅳🅰 ',
+  'єiτα, єн σ ∂נ gвr ',
+  '€เ†Д, €Ћ Ø Ðﮊ ģβЯ ',
+  '૯¡Ƭα, ૯ђ ѳ ∂j gв૨ ',
+  'Ξitд, Ξh Ø dﻝ gbЯ ',
+  'єiTA, єђ ø ₫j gþя ',
+  'эเ†ล, эђ ๏ ∂נ φвя ',
+  'ⒺⒾⓉⒶ, ⒺⒽ Ⓞ ⒹⒿ ⒼⒷⓇ ',
+  '€ƗŦΔ, €Ħ Ø ĐĴ ǤβŘ ',
+  'ē¡ƭā, ēƕ Ѳ Đĵ ǤƁƦ ',
+  'ε¡тą, εн ഠ ʠj φЪя ',
+  'eiイą, eん Ծ ʠj gЪя ',
+  'єıтα, єн σ ∂j gвя ',
+  'ɛɪ†ą, ɛʜ ѳ ɗʝ ɢʙʀ ',
+  'ᕮƗƬᗩ, ᕮᕼ 〇 Ðᒎ Ǥᙖᖇ ',
+  'EITɑ, EH O DJ GBR ',
+  'E̶I̶T̶A̶,̶ ̶E̶H̶ ̶O̶ ̶D̶J̶ ̶G̶B̶R̶ ',
+  '[є̲̅i̲̅т̲̅α̲̅,̲̅ ̲̅є̲̅н̲̅ ̲̅σ̲̅ ̲̅d̲̅j̲̅ ̲̅g̲̅b̲̅я̲̅] ',
+  'モ工匕丹, モ卄 口 刀Ｊ ム乃尺 ',
+  'ᴇɪᴛᴀ, ᴇʜ ᴏ ᴅᴊ ɢʙʀ ',
+  '🇪 🇮 🇹 🇦 , 🇪 🇭  🇴  🇩 🇯  🇬 🇧 🇷 ',
+  '🄴🄸🅃🄰, 🄴🄷 🄾 🄳🄹 🄶🄱🅁 ',
+  '🅔🅘🅣🅐, 🅔🅗 🅞 🅓🅙 🅖🅑🅡 ',
+  '🅴🅸🆃🅰, 🅴🅷 🅾 🅳🅹 🅶🅱🆁 ',
+  '𝔈ℑ𝔗𝔄, 𝔈ℌ 𝔒 𝔇𝔍 𝔊𝔅ℜ ',
+  '𝕰𝕴𝕿𝕬, 𝕰𝕳 𝕺 𝕯𝕵 𝕲𝕭𝕽 ',
+  '𝐸𝐼𝒯𝒜, 𝐸𝐻 𝒪 𝒟𝒥 𝒢𝐵𝑅 ',
+  '𝓔𝓘𝓣𝓐, 𝓔𝓗 𝓞 𝓓𝓙 𝓖𝓑𝓡 ',
+  '𝔼𝕀𝕋𝔸, 𝔼ℍ 𝕆 𝔻𝕁 𝔾𝔹ℝ ',
+  '𝙴𝙸𝚃𝙰, 𝙴𝙷 𝙾 𝙳𝙹 𝙶𝙱𝚁 ',
+  '𝘌𝘐𝘛𝘈, 𝘌𝘏 𝘖 𝘋𝘑 𝘎𝘉𝘙 ',
+  '𝙀𝙄𝙏𝘼, 𝙀𝙃 𝙊 𝘿𝙅 𝙂𝘽𝙍 ',
+  '𝐸𝐼𝑇𝐴, 𝐸𝐻 𝑂 𝐷𝐽 𝐺𝐵𝑅 ',
+  '𝑬𝑰𝑻𝑨, 𝑬𝑯 𝑶 𝑫𝑱 𝑮𝑩𝑹 ',
+  '𝐄𝐈𝐓𝐀, 𝐄𝐇 𝐎 𝐃𝐉 𝐆𝐁𝐑 ',
+  '𝗘𝗜𝗧𝗔, 𝗘𝗛 𝗢 𝗗𝗝 𝗚𝗕𝗥 ',
 ]
 
-function postPhrase() {
+function tweet() {
   Bot.get('statuses/home_timeline', {
     screen_name: 'djgbr_bot'
   }, function (err, data, response) {
@@ -41,7 +65,7 @@ function postPhrase() {
   });
 }
 
-function retweetGbr() {
+function retweet() {
   let query = {
     q: "dj gbr",
     result_type: "recent",
@@ -51,53 +75,50 @@ function retweetGbr() {
   Bot.get('search/tweets', query, function (err, data, response) {
     if (err) {
       console.log(`O bot não conseguiu achar o último tweet. ${err}`);
-    } else {
+    } 
+
+    else {
       let id = {
         id: data.statuses[0].id_str
       }
-
-      Bot.post('statuses/retweet/:id', id, function (err, data, response) {
-        if (err) {
-          console.log(`O bot não conseguiu retweetar. ${err}`);
-        } else {
-          console.log(`O bot retweetou: ${data.text}`);
-        }
-      });
-
-      let res = {
-        status: 'ᕮƗƬᗩ, ᕮᕼ 〇 Ðᒎ Ǥᙖᖇ @' + data.statuses[0].user.screen_name,
-        in_reply_to_status_id: data.statuses[0].id_str
-      }
-
-      let ive = {
-        status: 'Δ ΜΔƗŞ βŘΔβΔ Đ€ VØŁŦΔ Ř€ĐØŇĐΔ @' + data.statuses[0].user.screen_name,
-        in_reply_to_status_id: data.statuses[0].id_str
-      }
-
-      if (data.statuses[0].user.screen_name === 'ivegetal') {
-        Bot.post('statuses/update', ive, function (err, data, response) {
-          if (err) {
-            console.log(`O bot não conseguiu dar reply na Ive. ${err}`);
-          } else {
-            console.log(`O bot deu reply na Ive: ${data.text}`);
-          }
-        });
-      }
       
-      else if (data.statuses[0].user.screen_name != 'djgbr_bot') {
-        Bot.post('statuses/update', res, function (err, data, response) {
+      if (data.statuses[0].user.screen_name != 'djgbr_bot') {
+        // Fazer o Retweet
+        Bot.post('statuses/retweet/:id', id, function (err, data, response) {
           if (err) {
-            console.log(`O bot não conseguiu dar reply. ${err}`);
+            console.log(`O bot não conseguiu retweetar. ${err}`);
           } else {
-            console.log(`O bot deu reply: ${data.text}`);
+            console.log(`O bot retweetou: ${data.text}`);
           }
         });
+        
+        // Fazer a Reply
+        let tweet = data.statuses[0].text;
+
+        if (tweet.split(' ')[0] != 'RT') {
+          let phrase = randomItem(phrases);
+          
+          let res = {
+            status: '@' + data.statuses[0].user.screen_name + ' ' + phrase,
+            in_reply_to_status_id: data.statuses[0].id_str
+          }
+          
+          Bot.post('statuses/update', res, function (err, data, response) {
+            if (err) {
+              console.log(`O bot não conseguiu dar reply. ${err}`);
+            } else {
+              console.log(`O bot deu reply: ${data.text}`);
+            }
+          });
+        } else {
+          console.log('O bot tá tentando dar reply num retweet');
+        }
       } else {
-        console.log('O bot tá tentando dar reply nele mesmo');
+        console.log('O bot tá tentando se comunicar com ele próprio');
       }
     }
   });
 }
 
-setInterval(postPhrase, 45*60*1000);
-setInterval(retweetGbr, 1*60*1000);
+setInterval(tweet, 180*60*1000);
+setInterval(retweet, 1*20*1000);

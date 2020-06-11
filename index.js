@@ -1,7 +1,7 @@
 const Twit = require('twit');
-require('dotenv').config();
-
 const randomItem = require('random-item');
+
+require('dotenv').config();
 
 const Bot = new Twit({
   consumer_key: process.env.CONSUMER_KEY,
@@ -28,7 +28,7 @@ let phrases = [
   'єıтα, єн σ ∂j gвя ',
   'ɛɪ†ą, ɛʜ ѳ ɗʝ ɢʙʀ ',
   'ᕮƗƬᗩ, ᕮᕼ 〇 Ðᒎ Ǥᙖᖇ ',
-  'EITɑ, EH O DJ GBR ',
+  'EITA, EH O DJ GBR ',
   'E̶I̶T̶A̶,̶ ̶E̶H̶ ̶O̶ ̶D̶J̶ ̶G̶B̶R̶ ',
   '[є̲̅i̲̅т̲̅α̲̅,̲̅ ̲̅є̲̅н̲̅ ̲̅σ̲̅ ̲̅d̲̅j̲̅ ̲̅g̲̅b̲̅я̲̅] ',
   'モ工匕丹, モ卄 口 刀Ｊ ム乃尺 ',
@@ -51,20 +51,6 @@ let phrases = [
   '𝗘𝗜𝗧𝗔, 𝗘𝗛 𝗢 𝗗𝗝 𝗚𝗕𝗥 ',
 ]
 
-function tweet() {
-  Bot.get('statuses/home_timeline', {
-    screen_name: 'djgbr_bot'
-  }, function (err, data, response) {
-    let phrase = randomItem(phrases);
-    let phraseNormalized = phrase.concat(`#gbr${data[0].user.statuses_count}`);
-    console.log(`O bot postou essa frase: ${phraseNormalized}`);
-
-    Bot.post('statuses/update', {
-      status: phraseNormalized
-    });
-  });
-}
-
 function retweet() {
   let query = {
     q: "dj gbr",
@@ -81,8 +67,11 @@ function retweet() {
       let id = {
         id: data.statuses[0].id_str
       }
+
+      let user = data.statuses[0].user.screen_name;
+      let tweetId = data.statuses[0].id_str;
       
-      if (data.statuses[0].user.screen_name != 'djgbr_bot') {
+      if (user != 'djgbr_bot') {
         // Fazer o Retweet
         Bot.post('statuses/retweet/:id', id, function (err, data, response) {
           if (err) {
@@ -99,17 +88,22 @@ function retweet() {
           let phrase = randomItem(phrases);
           
           let res = {
-            status: '@' + data.statuses[0].user.screen_name + ' ' + phrase,
-            in_reply_to_status_id: data.statuses[0].id_str
+            status: '@' + user + ' ' + phrase,
+            in_reply_to_status_id: tweetId
+          }
+
+          let ive = {
+            status: '@' + user + ' ' + 'Δ ΜΔƗŞ βŘΔβΔ Đ€ VØŁŦΔ Ř€ĐØŇĐΔ',
+            in_reply_to_status_id: tweetId
           }
           
-          Bot.post('statuses/update', res, function (err, data, response) {
+          Bot.post('statuses/update', user === 'ivegetal' ? ive : res, function (err, data, response) {
             if (err) {
               console.log(`O bot não conseguiu dar reply. ${err}`);
             } else {
               console.log(`O bot deu reply: ${data.text}`);
             }
-          });
+          })
         } else {
           console.log('O bot tá tentando dar reply num retweet');
         }
@@ -120,5 +114,31 @@ function retweet() {
   });
 }
 
-setInterval(tweet, 180*60*1000);
+function replyGbr() {
+  let info = {
+    screen_name: "djgbroficial",
+  }
+
+  let replyTweet = '𝗘 𝗜 𝗧 𝗔,   𝗘 𝗛   𝗢   𝗗 𝗝   𝗚 𝗕 𝗥';
+
+  Bot.get('statuses/user_timeline', info, function (err, data, response) {
+    let lastTweetId = data[0].id_str; 
+    let gbrUser = data[0].user.screen_name; 
+
+    let res = {
+      status: '@' + gbrUser + ' ' + replyTweet,
+      in_reply_to_status_id: lastTweetId
+    }
+
+    Bot.post('statuses/update', res, function (err, data, response) {
+      if (err) {
+        console.log(`O bot não conseguiu dar reply no DJ GBR. ${err}`)
+      } else {
+        console.log(`O bot deu reply no DJ GBR: ${data.text}`);
+      }
+    })
+  })
+}
+
 setInterval(retweet, 1*20*1000);
+setInterval(replyGbr, 1*60*1000);
